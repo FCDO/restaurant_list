@@ -3,7 +3,7 @@ const bodyparser = require('body-parser')
 const express = require('express')
 const app = express()
 const port = 3000
-const restaurant_list = require('./restaurant.json')
+
 
 const mongoose = require('mongoose') // 載入 mongoose
 mongoose.connect(process.env.MONGODB_URI) // 設定連線到 mongoDB
