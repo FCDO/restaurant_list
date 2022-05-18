@@ -2,6 +2,7 @@ header {
   overflow: hidden;
 }
 
+
 .svg-inline--fa {
   width: 1.8125em !important;
 }
@@ -102,4 +103,8 @@ header {
     height: auto;
   }
 
+}
+
+.card-footer {
+  padding: 0%;
 }
