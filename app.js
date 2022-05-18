@@ -39,7 +39,6 @@ app.get('/', (req, res) => {
 })
 
 app.get('/restaurants/:id', (req, res) => {
-  console.log(req.params.id)
   const id = req.params.id
   return restList.findById(id)
     .lean()
@@ -48,6 +47,7 @@ app.get('/restaurants/:id', (req, res) => {
 
 })
 
+//go to edit page
 app.get("/restaurants/:id/edit", (req, res) => {
   const id = req.params.id
   return restList.findById(id)
@@ -72,6 +72,7 @@ app.post('/restaurants/:id/edit', (req, res) => {
     .catch(error => console.log(error))
 })
 
+//create new restaurant
 app.get('/news', (req, res) => {
 
   return res.render('news')
