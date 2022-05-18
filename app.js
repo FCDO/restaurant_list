@@ -40,10 +40,12 @@ app.get('/', (req, res) => {
 
 app.get('/restaurants/:id', (req, res) => {
   console.log(req.params.id)
-  const restaurant = restaurant_list.results.find((item) => {
-    return Number(req.params.id) === (item.id)
-  })
-  res.render('show', { restaurants: restaurant })
+  const id = req.params.id
+  return restList.findById(id)
+    .lean()
+    .then(restlist => res.render('show', { restaurants: restlist }))
+    .catch(error => console.log(error))
+
 })
 
 app.get('/search', (req, res) => {
