@@ -1,0 +1,37 @@
+<header>
+  <!-- navigation -->
+  <nav class="navbar navbar-light bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="/">
+        <img src="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/6227/restaurant-list-logo.png"
+          width="30" height="30" class="d-inline-block align-top" alt="我的餐廳清單">
+        我的餐廳清單
+      </a>
+
+    </div>
+  </nav>
+
+  <div class="banner"></div>
+
+</header>
+
+
+<!-- restaurant list -->
+<form action="/news" method="POST">
+  <div class="d-flex flex-column flex-wrap bd-highlight mb-3">
+    <input type="text" placeholder="id" name="id" value="{{ restaurants.id }}">
+    <input type="text" placeholder="name" name="name" value="{{ restaurants.name }}">
+    <input type="text" placeholder="name_en" name="name_en" value="{{ restaurants.name_en }}">
+    <input type="text" placeholder="category" name="category" value="{{ restaurants.category }}">
+    <input type="text" placeholder="image" name="image" value="{{ restaurants.image }}">
+    <input type="text" placeholder="location" name="location" value="{{ restaurants.location }}">
+    <input type="text" placeholder="phone" name="phone" value="{{ restaurants.phone }}">
+    <input type="text" placeholder="google_map" name="google_map" value="{{ restaurants.google_map }}">
+    <input type="text" placeholder="rating" name="rating" value="{{ restaurants.rating }}">
+    <input type="text" placeholder="description" name="description" value="{{ restaurants.description }}">
+
+    <button type="submit">Save</button>
+    <a href="/">back</a>
+  </div>
+
+</form>

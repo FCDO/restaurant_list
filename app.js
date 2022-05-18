@@ -59,7 +59,7 @@ app.get("/restaurants/:id/edit", (req, res) => {
 app.post('/restaurants/:id/edit', (req, res) => {
   const id = req.params.id
   const body = req.body
-  console.log(body)
+
   return restList.findById(id)
     .then(restlist => {
       restlist.name = body.name
@@ -72,8 +72,22 @@ app.post('/restaurants/:id/edit', (req, res) => {
     .catch(error => console.log(error))
 })
 
+app.get('/news', (req, res) => {
+
+  return res.render('news')
+
+})
+
+app.post('/news', (req, res) => {
+  const body = req.body
+  return restList.create(body)
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
+
+})
+
+
 app.get('/search', (req, res) => {
-  console.log(req.query)
   const keyword = req.query.keyword
   const target_restaurant = restaurant_list.results.filter((item) => {
     return item.name.toLowerCase().includes(req.query.keyword.toLowerCase())
