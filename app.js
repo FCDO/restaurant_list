@@ -48,6 +48,30 @@ app.get('/restaurants/:id', (req, res) => {
 
 })
 
+app.get("/restaurants/:id/edit", (req, res) => {
+  const id = req.params.id
+  return restList.findById(id)
+    .lean()
+    .then(restlist => res.render('edit', { restaurants: restlist }))
+    .catch(error => console.log(error))
+})
+
+app.post('/restaurants/:id/edit', (req, res) => {
+  const id = req.params.id
+  const body = req.body
+  console.log(body)
+  return restList.findById(id)
+    .then(restlist => {
+      restlist.name = body.name
+      restlist.category = body.category
+      restlist.location = body.location
+      restlist.phone = body.phone
+      return restlist.save()
+    })
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
+})
+
 app.get('/search', (req, res) => {
   console.log(req.query)
   const keyword = req.query.keyword

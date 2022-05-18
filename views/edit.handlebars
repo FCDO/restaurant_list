@@ -1,0 +1,21 @@
+<form action="/restaurants/{{restaurants._id}}/edit" method="POST">
+  <div class="d-flex flex-sm-columnn bd-highlight mb-3">
+    <input type="text" placeholder="name" name="name" value="{{ restaurants.name }}">
+    <button type="submit">Save</button>
+
+
+
+    <input type="text" placeholder="category" name="category" value="{{ restaurants.category }}">
+    <button type="submit">Save</button>
+
+
+    <input type="text" placeholder="location" name="location" value="{{ restaurants.location }}">
+    <button type="submit">Save</button>
+
+
+    <input type="text" placeholder="phone" name="phone" value="{{ restaurants.phone }}">
+    <button type="submit">Save</button>
+    <a href="/">back</a>
+  </div>
+
+</form>
