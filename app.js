@@ -3,7 +3,7 @@ const bodyparser = require('body-parser')
 const express = require('express')
 const app = express()
 const port = 3000
-
+const restList = require('./models/restaurant')
 
 const mongoose = require('mongoose') // 載入 mongoose
 mongoose.connect(process.env.MONGODB_URI) // 設定連線到 mongoDB
@@ -31,8 +31,11 @@ app.set('view engine', 'handlebars')
 app.use(express.static('public'))
 //route setting
 app.get('/', (req, res) => {
+  restList.find()
+    .lean()
+    .then(restlist => res.render('index', { restaurants: restlist }))
+    .catch(error => console.log(error))
 
-  res.render('index', { restaurants: restaurant_list.results })
 })
 
 app.get('/restaurants/:id', (req, res) => {
