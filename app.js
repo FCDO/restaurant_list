@@ -96,11 +96,21 @@ app.post("/restaurants/:id/delete", (req, res) => {
 
 
 app.get('/search', (req, res) => {
-  const keyword = req.query.keyword
-  const target_restaurant = restaurant_list.results.filter((item) => {
-    return item.name.toLowerCase().includes(req.query.keyword.toLowerCase())
-  })
-  res.render('index', { restaurants: target_restaurant, keyword: keyword })
+  const keyword = req.query.keyword.trim().toLowerCase()
+  return restList.find()
+    .lean()
+    .then(restlist => {
+      const filterList = restlist.filter(rest => {
+        const rest_keyword = rest.name.trim().toLowerCase()
+        return rest_keyword.includes(keyword)
+      })
+      res.render('index', { restaurants: filterList })
+    })
+    .catch(err => console.log(err))
+
+
+
+
 })
 //start and listen on the Express server
 
