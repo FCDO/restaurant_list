@@ -5,6 +5,11 @@ const app = express()
 const port = 3000
 const restList = require('./models/restaurant')
 
+// 載入 method-override
+const methodOverride = require('method-override')
+// 設定每一筆請求都會透過 methodOverride 進行前置處理
+app.use(methodOverride('_method'))
+
 const mongoose = require('mongoose') // 載入 mongoose
 mongoose.connect(process.env.MONGODB_URI) // 設定連線到 mongoDB
 
@@ -56,7 +61,7 @@ app.get("/restaurants/:id/edit", (req, res) => {
     .catch(error => console.log(error))
 })
 
-app.post('/restaurants/:id/edit', (req, res) => {
+app.put('/restaurants/:id', (req, res) => {
   const id = req.params.id
   const body = req.body
 
@@ -87,7 +92,7 @@ app.post('/restaurants', (req, res) => {
 
 })
 
-app.post("/restaurants/:id/delete", (req, res) => {
+app.delete("/restaurants/:id", (req, res) => {
   const id = req.params.id
   return restList.findById(id)
     .then(restlist => restlist.remove())
@@ -106,7 +111,6 @@ app.get('/search', (req, res) => {
     地區: { location: 'asc' }
 
   }
-  console.log(req.query)
   return restList.find()
     .lean()
     .sort(sortRule[sort])
