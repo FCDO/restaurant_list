@@ -3,6 +3,47 @@ const router = express.Router()
 
 const restList = require('../../models/restaurant')
 
+router.post('/', (req, res) => {
+  const body = req.body
+  return restList.create(body)
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
+
+})
+
+router.get('/search', (req, res) => {
+  const keyword = req.query.keyword.trim().toLowerCase()
+  const sort = req.query.sort
+  const sortRule = {
+    A_to_Z: { name: 'asc' },
+    Z_to_A: { name: 'desc' },
+    類別: { category: 'asc' },
+    地區: { location: 'asc' }
+
+  }
+  return restList.find()
+    .lean()
+    .sort(sortRule[sort])
+    .then(restlist => {
+      const filterList = restlist.filter(rest => {
+        const rest_keyword = rest.name.trim().toLowerCase()
+        return rest_keyword.includes(keyword)
+      })
+      res.render('index', { restaurants: filterList })
+    })
+    .catch(err => console.log(err))
+
+})
+
+
+
+//create new restaurant
+router.get('/new', (req, res) => {
+
+  return res.render('news')
+
+})
+
 router.get('/:id', (req, res) => {
   const id = req.params.id
   return restList.findById(id)
@@ -37,13 +78,7 @@ router.put('/:id', (req, res) => {
     .catch(error => console.log(error))
 })
 
-router.post('/', (req, res) => {
-  const body = req.body
-  return restList.create(body)
-    .then(() => res.redirect('/'))
-    .catch(error => console.log(error))
 
-})
 
 router.delete("/:id", (req, res) => {
   const id = req.params.id
