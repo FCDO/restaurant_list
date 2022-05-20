@@ -73,13 +73,13 @@ app.post('/restaurants/:id/edit', (req, res) => {
 })
 
 //create new restaurant
-app.get('/news', (req, res) => {
+app.get('/new', (req, res) => {
 
   return res.render('news')
 
 })
 
-app.post('/news', (req, res) => {
+app.post('/restaurants', (req, res) => {
   const body = req.body
   return restList.create(body)
     .then(() => res.redirect('/'))
@@ -98,8 +98,18 @@ app.post("/restaurants/:id/delete", (req, res) => {
 
 app.get('/search', (req, res) => {
   const keyword = req.query.keyword.trim().toLowerCase()
+  const sort = req.query.sort
+  const sortRule = {
+    A_to_Z: { name: 'asc' },
+    Z_to_A: { name: 'desc' },
+    類別: { category: 'asc' },
+    地區: { location: 'asc' }
+
+  }
+  console.log(req.query)
   return restList.find()
     .lean()
+    .sort(sortRule[sort])
     .then(restlist => {
       const filterList = restlist.filter(rest => {
         const rest_keyword = rest.name.trim().toLowerCase()
@@ -108,9 +118,6 @@ app.get('/search', (req, res) => {
       res.render('index', { restaurants: filterList })
     })
     .catch(err => console.log(err))
-
-
-
 
 })
 //start and listen on the Express server

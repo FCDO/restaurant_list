@@ -7,7 +7,7 @@
           width="30" height="30" class="d-inline-block align-top" alt="我的餐廳清單">
         我的餐廳清單
       </a>
-      <a href="/news"><button class="btn btn-link btn-sm">Create</button></a>
+      <a href="/new"><button class="btn btn-link btn-sm">Create</button></a>
     </div>
   </nav>
 
@@ -21,16 +21,32 @@
     <div class="search-bar-inner">
       <form action="/search">
         <h4 class="mb-2">尋找餐廳：</h4>
-        <div class="input-group">
+        <div class="input-group ">
           <input type="text" name="keyword" class="form-control" placeholder="輸入餐廳、分類" aria-label="Restaurant Name..."
             value="{{keyword}}" aria-describedby="search-button">
           <div class="input-group-append">
             <button class="btn btn-major" type="submit" id="search-button"><i class="fas fa-search"></i></button>
           </div>
+
+          <select class="form-control" id="sort" name="sort">
+            <option>A_to_Z</option>
+            <option>Z_to_A</option>
+            <option>類別</option>
+            <option>地區</option>
+          </select>
+
+
         </div>
+
       </form>
     </div>
+
+
+    </form>
   </div>
+
+
+
 </div>
 
 <!-- restaurant list -->
