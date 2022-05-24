@@ -1,5 +1,6 @@
 # restaurant_list
-https://raw.githubusercontent.com/ALPHACamp/web-model-answer/main/F2-3_BackEnd/A6/public/image/snapshot.png
+
+![image](https://raw.githubusercontent.com/ALPHACamp/web-model-answer/main/F2-3_BackEnd/A6/public/image/snapshot.png)
 
 ## 介紹
 紀錄屬於自己的餐廳清單，可以瀏覽餐廳、查看詳細資訊
