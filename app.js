@@ -5,7 +5,13 @@ const app = express()
 const port = 3000
 const restList = require('./models/restaurant')
 const routes = require('./routes/index')
+require('dotenv').config()
+
 require('./config/mongoose')
+
+
+
+
 
 
 // 載入 method-override
