@@ -6,6 +6,7 @@ const port = 3000
 const restList = require('./models/restaurant')
 const routes = require('./routes/index')
 const session = require('express-session')
+const usePassport = require('./config/passport')
 require('dotenv').config()
 
 require('./config/mongoose')
@@ -37,7 +38,7 @@ app.set('view engine', 'handlebars')
 // setting static files
 app.use(express.static('public'))
 //route setting
-
+usePassport(app)
 app.use(routes)
 //start and listen on the Express server
 
