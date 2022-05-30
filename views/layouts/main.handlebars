@@ -13,6 +13,34 @@
 </head>
 
 <body>
+  <header>
+    <!-- navigation -->
+    <nav class="navbar navbar-light bg-light">
+      <div class="container d-flex ">
+        <a class="navbar-brand " href="/">
+
+          <img src="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/6227/restaurant-list-logo.png"
+            width="30" height="30" class="d-inline-block align-top" alt="我的餐廳清單">
+          {{#if isAuthenticated}}{{ user.name}}的 {{/if}}
+          餐廳清單
+        </a>
+        <div class="d-flex justify-content-end">
+          {{#if isAuthenticated}}
+          <a href="/users/logout" class="btn btn-outline-dark ">Logout</a>
+          {{else}}
+          <a href="/users/login" class="btn btn-outline-dark">Login</a>
+          {{/if}}
+          <a href="/restaurants/new"><button class="btn btn-link btn-sm ">Create</button></a>
+
+        </div>
+
+
+      </div>
+    </nav>
+
+    <div class="banner"></div>
+
+  </header>
   <!-- partial templates will replace the part of "body" here -->
   {{{body}}}
 
