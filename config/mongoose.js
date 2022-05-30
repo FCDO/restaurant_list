@@ -3,7 +3,7 @@ mongoose.connect(process.env.MONGODB_URI) // 設定連線到 mongoDB
 
 // 取得資料庫連線狀態
 const db = mongoose.connection
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
 // 連線異常
 db.on('error', () => {
   console.log('mongodb error!')
