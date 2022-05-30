@@ -5,6 +5,7 @@ const app = express()
 const port = 3000
 const restList = require('./models/restaurant')
 const routes = require('./routes/index')
+const session = require('express-session')
 require('dotenv').config()
 
 require('./config/mongoose')
@@ -19,7 +20,12 @@ const methodOverride = require('method-override')
 // 設定每一筆請求都會透過 methodOverride 進行前置處理
 app.use(methodOverride('_method'))
 
+app.use(session({
+  secret: 'randomSession',
+  resave: false,
+  saveUninitialized: true
 
+}))
 
 app.use(bodyparser.urlencoded({ extended: true }))
 //require express-handlebars here
