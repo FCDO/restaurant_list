@@ -2,7 +2,6 @@
 const bodyparser = require('body-parser')
 const express = require('express')
 const app = express()
-const port = 3000
 const restList = require('./models/restaurant')
 const routes = require('./routes/index')
 const session = require('express-session')
@@ -10,6 +9,10 @@ const usePassport = require('./config/passport')
 const flash = require('connect-flash')
 
 require('dotenv').config()
+
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
 
 require('./config/mongoose')
 
@@ -24,7 +27,7 @@ const methodOverride = require('method-override')
 app.use(methodOverride('_method'))
 
 app.use(session({
-  secret: 'randomSession',
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true
 
@@ -54,6 +57,7 @@ app.use((req, res, next) => {
 app.use(routes)
 //start and listen on the Express server
 
-app.listen(port, () => {
-  console.log(`Express is listening on localhost:${port}`)
+app.listen(process.env.port, () => {
+  console.log(`Express is listening on localhost:${process.env.port
+    }`)
 })
